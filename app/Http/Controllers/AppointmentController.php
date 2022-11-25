@@ -29,37 +29,42 @@ class AppointmentController extends Controller
 
     public function rejectedAppointment()
     {
-        $appointments = Book::with('user','brands','models')->where('reject','=',1)->get();
-        return view('admin.appointment.rejected_appointment',compact('appointments'));
+        $appointments = Book::with('user', 'brands', 'models')->where('reject', '=', 1)->get();
+        return view('admin.appointment.rejected_appointment', compact('appointments'));
     }
 
     public function changeStatus(Request $request)
     {
-        $id = $request->id;
+        $id          = $request->id;
         $appointment = Book::with('user', 'models', 'brands')->whereId($id)->first();
-        $status = $request->status;
-        if ($status == 'reject') {
-            $appointment->reject = 1;
-            $appointment->accept = 0;
+        $status      = $request->status;
+        if ($status == 'reject')
+        {
+            $appointment->reject    = 1;
+            $appointment->accept    = 0;
             $appointment->completed = 0;
             $appointment->save();
             Mail::send('emails.template.rejected_appointment_mail', ['appointment' => $appointment], function ($message) {
                 $message->to(auth()->user()->email, 'mail send online')
                     ->subject('Appointment Rejected');
             });
-        } else if ($status == 'accept') {
-            $appointment->accept = 1;
-            $appointment->reject = 0;
+        }
+        else if ($status == 'accept')
+        {
+            $appointment->accept    = 1;
+            $appointment->reject    = 0;
             $appointment->completed = 0;
             $appointment->save();
             Mail::send('emails.template.accepted_appointment_mail', ['appointment' => $appointment], function ($message) {
                 $message->to(auth()->user()->email, 'mail send online')
                     ->subject('Appointment Accepted');
             });
-        } else if ($status == 'completed') {
+        }
+        else if ($status == 'completed')
+        {
             $appointment->completed = 1;
-            $appointment->accept = 0;
-            $appointment->reject = 0;
+            $appointment->accept    = 0;
+            $appointment->reject    = 0;
             $appointment->save();
             Mail::send('emails.template.completed_appointment_mail', ['appointment' => $appointment], function ($message) {
                 $message->to(auth()->user()->email, 'mail send online')
@@ -72,40 +77,38 @@ class AppointmentController extends Controller
     public function appointmentIdView($id)
     {
         $appointment = Book::with('user', 'brands', 'models')->whereId(request('id'))->first();
-        $total = 0 ;
+        $total       = 0;
         if (isset($appointment->service_price))
             $total = array_sum(json_decode($appointment->service_price));
 
         return view('admin.appointment.view_id_appointment')
-
             ->with('total', $total)
             ->with('appointment', $appointment);
     }
 
     public function appointmentNote(Request $request)
     {
-        $id = $request->id;
+        $id   = $request->id;
         $bill = Book::findOrNew($id);
 
 
+        $sname  = $request->name;
+        $sprice = $request->price;
+        array_push($sname, "Service Charge");
+        array_push($sprice, 100);
 
-        $sname=$request->name;
-        $sprice=$request->price;
-        array_push($sname,"Service Charge");
-        array_push($sprice,100);
-
-        $input['data']['service_name'] =json_encode($sname);
-        $input['data']['service_price'] =json_encode($sprice);
-        $input['data']['service_custom_message'] =$request->message;
+        $input['data']['service_name']           = json_encode($sname);
+        $input['data']['service_price']          = json_encode($sprice);
+        $input['data']['service_custom_message'] = $request->message;
         $bill->fill($input['data'])->save();
         $appointment = Book::with('user', 'models', 'brands')->whereId($id)->first();
 
         $total = array_sum(json_decode($appointment->service_price));
-        Mail::send('emails.template.accept_note', ['total' => $total,'name'=>$sname,'price'=>$sprice,'appointment' => $appointment], function ($message) {
+        Mail::send('emails.template.accept_note', ['total' => $total, 'name' => $sname, 'price' => $sprice, 'appointment' => $appointment], function ($message) {
             $message->to(auth()->user()->email, 'mail send online')
                 ->subject('Accept ');
         });
-        
+
 
         return redirect()->back()->with('success', 'Service Send Successfully');
     }

@@ -28,12 +28,13 @@ class CategoriesController extends Controller
             'name' => 'required',
         ]);
 
-        $category = new Categories();
+        $category       = new Categories();
         $category->name = $request->input('name');
-        if ($request->hasFile('categories_image')) {
-            $file = $request->file('categories_image');
+        if ($request->hasFile('categories_image'))
+        {
+            $file      = $request->file('categories_image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $filename  = time() . '.' . $extention;
             $file->move(public_path() . '/img/categoriesPhoto', $filename);
             $category->categories_image = $filename;
         }
@@ -55,16 +56,17 @@ class CategoriesController extends Controller
 
     public function update($id, Request $request, Categories $categoery)
     {
-        $validatedData = $request->validate([
+        $validatedData         = $request->validate([
             'name' => 'required|max:255',
         ]);
         $input['data']['name'] = $request->name;
-        if ($request->hasFile('categories_image')) {
-            $file = $request->file('categories_image');
+        if ($request->hasFile('categories_image'))
+        {
+            $file      = $request->file('categories_image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $filename  = time() . '.' . $extention;
             $file->move(public_path() . '/img/categoriesPhoto', $filename);
-            $request->categories_image = $filename;
+            $request->categories_image         = $filename;
             $input['data']['categories_image'] = $filename;
         }
         Categories::whereId($id)->update($input['data']);

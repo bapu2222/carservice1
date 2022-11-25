@@ -22,7 +22,7 @@ class AuthController extends Controller
     function doLogin(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',   // required and email format validation
+            'email'    => 'required|email',   // required and email format validation
             'password' => 'required', // required and number field validation
 
         ]); // create the validations
@@ -31,18 +31,25 @@ class AuthController extends Controller
             return back()->withInput()->withErrors($validator);
             // validation failed redirect back to form
 
-        } else {
+        }
+        else
+        {
             //validations are passed try login using laravel auth attemp
-            if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
             {
-                if(auth()->user()->is_admin == 1){
+                if (auth()->user()->is_admin == 1)
+                {
                     return redirect(route('dashboard.index'))->with('success', 'Login Successful');
-                }else{
+                }
+                else
+                {
                     return redirect('/')->with('success', 'Login Successful');
                 }
 
-            } else {
-                return back()->withErrors( "Invalid credentials"); // auth fail redirect with error
+            }
+            else
+            {
+                return back()->withErrors("Invalid credentials"); // auth fail redirect with error
             }
         }
     }
@@ -50,9 +57,9 @@ class AuthController extends Controller
     function doRegister(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',   // required and email format validation
-            'password' => 'required|min:8', // required and number field validation
+            'name'             => 'required',
+            'email'            => 'required|email|unique:users,email',   // required and email format validation
+            'password'         => 'required|min:8', // required and number field validation
             'confirm_password' => 'required|same:password',
 
         ]); // create the validations
@@ -60,17 +67,20 @@ class AuthController extends Controller
         {
             return back()->withInput()->withErrors($validator);
             // validation failed redirect back to form
-        } else {
+        }
+        else
+        {
             //validations are passed, save new user in database
-            $User = new User;
-            $User->name = $request->name;
-            $User->email = $request->email;
+            $User           = new User;
+            $User->name     = $request->name;
+            $User->email    = $request->email;
             $User->password = bcrypt($request->password);
             $User->save();
 
             return redirect("login")->with('success', 'You have successfully registered, Login to access your dashboard');
         }
     }
+
     // show dashboard
     function dashboard()
     {

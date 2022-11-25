@@ -26,25 +26,28 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        if (auth()->user()) {
-            $appointment = new Book();
-            $appointment->user_id = auth()->user()->id;
+        if (auth()->user())
+        {
+            $appointment                   = new Book();
+            $appointment->user_id          = auth()->user()->id;
             $appointment->appointment_type = null;
-            $appointment->brand = $request->brand;
-            $appointment->model = $request->model;
-            $appointment->kilometers = $request->kilometers;
-            $appointment->car_number = $request->car_number;
+            $appointment->brand            = $request->brand;
+            $appointment->model            = $request->model;
+            $appointment->kilometers       = $request->kilometers;
+            $appointment->car_number       = $request->car_number;
             $appointment->appointment_date = $request->appointment_date;
             $appointment->appointment_time = $request->appointment_time;
             $appointment->save();
-            $appointments = $appointment::with('user','brands','models')->where('id',$appointment->id)->get();
+            $appointments = $appointment::with('user', 'brands', 'models')->where('id', $appointment->id)->get();
 
-          Mail::send('emails.template.mail', ['appointment' => $appointments], function ($message) {
+            Mail::send('emails.template.mail', ['appointment' => $appointments], function ($message) {
                 $message->to(auth()->user()->email, 'mail send online')
                     ->subject('Appointment Submitted');
             });
             return redirect('/');
-        } else {
+        }
+        else
+        {
             return redirect('/');
         }
 
@@ -73,8 +76,9 @@ class BookController extends Controller
     public function getModel(Request $request)
     {
         $models = CarModels::whereBrandId($request->id)->get();
-        $html = '<option value="">Select Model</option>';
-        foreach ($models as $model) {
+        $html   = '<option value="">Select Model</option>';
+        foreach ($models as $model)
+        {
             $html .= '<option value="' . $model->id . '">' . $model->name . '</option>';
         }
         return response()->json(['html' => $html]);

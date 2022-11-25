@@ -23,32 +23,38 @@ class BrandsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'name'       => 'required',
             'car_models' => 'required',
         ]);
 
-        $brand = new Brands();
+        $brand       = new Brands();
         $brand->name = $request->input('name');
         $brand->save();
 
         $newModels = [];
 
-        foreach (request('car_models') as $key => $value) {
-            if (is_numeric($value)) {
+        foreach (request('car_models') as $key => $value)
+        {
+            if (is_numeric($value))
+            {
                 $q = CarModels::whereId($value)->first();
-                if ($q != null) {
+                if ($q != null)
+                {
                     $newModels[] = $q->name;
                     $q->delete();
                 }
-            } else {
+            }
+            else
+            {
                 $newModels[] = $value;
             }
         }
 
-        foreach ($newModels as $value) {
+        foreach ($newModels as $value)
+        {
 
-            $model = new CarModels();
-            $model->name = $value;
+            $model           = new CarModels();
+            $model->name     = $value;
             $model->brand_id = $brand->id;
             $model->save();
         }
@@ -62,9 +68,10 @@ class BrandsController extends Controller
 
     public function edit($id)
     {
-        $brand = Brands::find($id);
+        $brand     = Brands::find($id);
         $modelName = [];
-        foreach ($brand->models as $value) {
+        foreach ($brand->models as $value)
+        {
             $modelName[] = $value->id;
         }
         $models = CarModels::all()->pluck('id', 'name');
@@ -76,31 +83,37 @@ class BrandsController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required',
+            'name'       => 'required',
             'car_models' => 'required',
         ]);
 
-        $brand = Brands::whereId($id)->first();
+        $brand       = Brands::whereId($id)->first();
         $brand->name = request('name');
         $brand->save();
         $newModels = [];
-        foreach (request('car_models') as $key => $value) {
-            if (is_numeric($value)) {
+        foreach (request('car_models') as $key => $value)
+        {
+            if (is_numeric($value))
+            {
                 $q = CarModels::whereId($value)->first();
-                if ($q != null) {
+                if ($q != null)
+                {
                     $newModels[] = $q->name;
                     $q->delete();
                 }
-            } else {
+            }
+            else
+            {
                 $newModels[] = $value;
             }
         }
 
         CarModels::whereBrandId($brand->id)->delete();
-        foreach ($newModels as $value) {
+        foreach ($newModels as $value)
+        {
 
-            $model = new CarModels();
-            $model->name = $value;
+            $model           = new CarModels();
+            $model->name     = $value;
             $model->brand_id = $brand->id;
             $model->save();
         }
