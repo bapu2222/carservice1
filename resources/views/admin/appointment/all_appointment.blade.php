@@ -71,11 +71,11 @@
                                        data-id="{{$appointment->id}}" title="View Appointment">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a class="btn btn-sm appointment_accept" href="Javascript:void(0)"
+                                    <a class="btn btn-sm appointment_accept text-success" href="Javascript:void(0)"
                                        data-id="{{$appointment->id}}" title="Accept Appointment">
                                         <i class="fas fa-check"></i>
                                     </a>
-                                    <a class="btn btn-sm appointment_Reject" href="Javascript:void(0)"
+                                    <a class="btn btn-sm appointment_Reject text-danger" href="Javascript:void(0)"
                                        data-id="{{$appointment->id}}" title="Reject Appointment">
                                         <i class="fas fa-times"></i>
                                     </a>

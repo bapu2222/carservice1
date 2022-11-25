@@ -64,16 +64,23 @@
                                     <span class="right badge badge-success">Accept</span>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm"  href="{{ route('appointment.id.view',['id'=>$appointment->id])}}" title="View Appointment"><i
-                                                class="fas fa-eye"></i> </a>
+                                    <a class="btn btn-sm"
+                                       href="{{ route('appointment.id.view',['id'=>$appointment->id])}}"
+                                       title="View Appointment">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                     <a class="btn btn-sm accept-appointment-model" href="Javascript:void(0)"
-                                       data-id="{{$appointment->id}}" title="Add item to user send"><i class="fas fa-sticky-note"></i> </a>
+                                       data-id="{{$appointment->id}}" title="Add item to user send">
+                                        <i class="fas fa-sticky-note"></i>
+                                    </a>
                                     <a class="btn btn-sm appointment_completed" href="Javascript:void(0)"
-                                       data-id="{{$appointment->id}}" title="Completed Appointment"> <i
-                                                class="fas fa-check-circle"></i> </a>
+                                       data-id="{{$appointment->id}}" title="Completed Appointment">
+                                        <i class="fas fa-check-circle"></i>
+                                    </a>
                                     <a class="btn btn-sm appointment_Reject" href="Javascript:void(0)"
-                                       data-id="{{$appointment->id}}" title="Reject Appointment"><i
-                                                class="fas fa-times"></i> </a>
+                                       data-id="{{$appointment->id}}" title="Reject Appointment">
+                                        <i class="fas fa-times"></i>
+                                    </a>
 
                                 </td>
                                 {{--                                <td>--}}
@@ -215,7 +222,7 @@
             })
             $(document).on('click', '.accept-appointment-model', function () {
                 let id = $(this).attr('data-id');
-               $('#selected_id').val(id);
+                $('#selected_id').val(id);
                 $('#exampleModal').modal('show');
 
             })

@@ -52,12 +52,14 @@
                                 <label class="flex items-center dark:text-gray-400">
                                     <input type="checkbox"
                                            class="text-red-600 form-checkbox focus:border-red-400 focus:outline-none focus:shadow-outline-red dark:focus:shadow-outline-gray"/>
-                                    <span class="ml-2">I agree to the<span class="underline">privacy policy</span></span>
+                                    <span class="ml-2">I agree to the<span
+                                                class="underline">privacy policy</span></span>
                                 </label>
                             </div>
 
                             <!-- You should use a button here, as the anchor is only used for the example  -->
-                            <button type="submit" class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
+                            <button type="submit"
+                                    class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
                                 Create account
                             </button>
 
@@ -87,4 +89,4 @@
             </div>
         </div>
     </div>
-    @stop
+@stop
