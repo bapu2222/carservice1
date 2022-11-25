@@ -2,9 +2,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MARAMMAT | V1</title>
-    <link rel = "icon" href="{{asset('favicon_io/favicon.ico')}}" type = "image/x-icon">
+    <link rel="icon" href="{{asset('favicon_io/micon.jpg')}}" type="image/x-icon">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-   <!-- Theme style -->
+    <!-- Theme style -->
     <link rel="stylesheet" href="{{asset("dist/css/adminlte.min.css")}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset("plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}">
@@ -21,10 +22,10 @@
     <link rel="stylesheet" href="{{asset("plugins/daterangepicker/daterangepicker.css")}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset("plugins/summernote/summernote-bs4.min.css")}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"/>
 
-{{--    cutome css--}}
-    <link rel="stylesheet" href="{{asset("css/customcss.css")}}" />
+    {{--    cutome css--}}
+    <link rel="stylesheet" href="{{asset("css/customcss.css")}}"/>
 
     <!-- Select2 -->
     <link rel="stylesheet" href="{{asset("plugins/select2/css/select2.min.css")}}">

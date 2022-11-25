@@ -1,8 +1,8 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <img src="{{asset("dist/img/AdminLTELogo.png")}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="{{route('dashboard.index')}}" class="brand-link bg-info">
+        <img src="{{asset("favicon_io/micon.jpg")}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light text-uppercase">Marammat</span>
     </a>
@@ -11,8 +11,11 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{asset("dist/img/user2-160x160.jpg")}}" class="img-circle elevation-2" alt="User Image">
+            <div class="image inline-flex" style="display: inline-flex !important;">
+                <span class="bg-black" style=" padding: 7px 11px; border-radius: 64px;">
+                    {{ (strlen(auth()->user()->name) > 2) ? (substr((strtoupper(auth()->user()->name)),0,2)) : (strtoupper(auth()->user()->name))}}
+                </span>
+                {{--                <img src="{{asset("dist/img/user2-160x160.jpg")}}" class="img-circle elevation-2" alt="User Image">--}}
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{auth()->user()->name}}</a>

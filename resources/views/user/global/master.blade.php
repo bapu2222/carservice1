@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 @extends('user.global.header')
-<link rel = "icon" href="{{asset('favicon_io/android-chrome-512x512.png')}}" type = "image/x-icon">
+<link rel="icon" href="{{asset('favicon_io/micon.jpg')}}" type="image/x-icon">
 
 <body>
 {{--sdfsfsdfsd--}}

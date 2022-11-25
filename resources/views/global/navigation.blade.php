@@ -4,16 +4,12 @@
 {{--</div>--}}
 
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" >
+<nav class="main-header navbar navbar-expand navbar-white  navbar-light bg-info">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('dashboard.index')}}" class="nav-link">Home</a>
-        </li><li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('auth.logout')}}" class="nav-link">Log out</a>
+            <a class="nav-link text-light" data-widget="pushmenu" href="#" role="button"><i
+                        class="fas fa-bars"></i></a>
         </li>
     </ul>
 
@@ -32,8 +28,6 @@
                     <i class="fas fa-file mr-2"></i> Welcome To Marammat
                     <span class="float-right text-muted text-sm">5 days</span>
                 </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
         <li class="nav-item">
@@ -42,10 +36,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link btn-sm btn-light text-center d-flex align-items-center" href="{{route('user-site')}}" role="button" title="Back to User Site">
-                <i class="fas fa-user-circle" style="font-size: 25px"></i> <span class="ml-1">User Site</span>
+            <a class="nav-link text-danger" href="{{route('auth.logout')}}"
+               role="button" title="logout">
+                <i class="fas fa-power-off"></i>
             </a>
         </li>
     </ul>
 </nav>
-<!-- /.navbar -->

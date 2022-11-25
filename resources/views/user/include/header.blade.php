@@ -7,7 +7,7 @@
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <!-- Site Metas -->
-    <link rel="icon" href="{{ url('images/fevicon.png')}}" type="image/gif"/>
+    <link rel="icon" href="{{asset('favicon_io/micon.jpg')}}" type="image/x-icon">
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
